@@ -1,4 +1,4 @@
-<?php 
+<?php
     $filepath = realpath(dirname(__FILE__));
 	include_once ($filepath.'/inc/loginheader.php');
 ?>
@@ -10,11 +10,11 @@
 		<table>
 			<tr>
 				<td>Username</td>
-				<td><input type="text" name="username"/></td>
+				<td><input type="text" name="adminUser"/></td>
 			</tr>
 			<tr>
 				<td>Password</td>
-				<td><input type="password" name="password"/></td>
+				<td><input type="password" name="AdminPass"/></td>
 			</tr>
 			<tr>
 				<td></td>
