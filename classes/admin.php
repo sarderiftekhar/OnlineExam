@@ -9,12 +9,30 @@
 class admin {
   private $db;
   private $fm;
+  public function _construct(){
+    $this->$db = new Database();
+    $this->$fm =  new format();
+  }
 
-  pulblic function _construct(){
+  public function getAdminData($data){
+      $adminUser = $this->fm->validation($data['adminUser']);
+      $adminPass = $this->fm->validation($data['adminPass']);
+      $adminUser = mysqli_real_escape_string($this->link,$adminUser);
+      $adminPass = mysqli_real_escape_string($this->link,md5($adminPass));
 
-    $this-> = new Database();
-    $this-> = new format();
-
+      $query = "SELECT * From dbl_admin Where adminUser = '$adminUser' AND adminPass ='$adminPass'";
+      $result = $this->db->select($query);
+      if ($result!=false) {
+        $value = $result->fetch_assoc();
+        Session::init();
+        Session::set("adminLogin",true);
+        Session::set("adminUser",$value['adminUser']);
+        Session::set("adminIs",$value['adminId']);
+        header("Location:index.php");
+      }else{
+        $msg= "<span class='error'>Username or Password dosn't match</span>";
+        return $msg;
+      }
   }
 }
 
