@@ -11,17 +11,7 @@ class User{
     $this->db = new Database();
     $this->fm =  new Format();
   }
-
-  public function getallUser(){
-
-    $query = "SELECT * FROM dbl_user ORDER BY userId DESC";
-    $result = $this->db->select($query);
-    return $result;
-
-  }
-
-
-  public function getAdminData($data){
+public function getAdminData($data){
 
       $adminUser = $this->fm->validation($data['adminUser']);
       $adminPass = $this->fm->validation($data['adminPass']);
@@ -29,5 +19,56 @@ class User{
       $adminPass = mysqli_real_escape_string($this->db->link,md5($adminPass));
 
   }
+
+public function getAllUser(){
+
+      $query = "SELECT * FROM dbl_user ORDER BY userId DESC";
+      $result = $this->db->select($query);
+      return $result;
+  }
+
+public function DisableUser($userId){
+
+    $query="UPDATE dbl_user
+            SET
+            status = '1'
+            WHERE userId = '$userId'";
+
+    $updated_row = $this->db->update($query);
+
+    if($updated_row){
+      $msg = "<span class='success'>User disabled</span>";
+      return $msg;
+                    }
+    else{
+
+      $msg = "<span class='error'>Caution User not Disabled!!!</span>";
+      return $msg;
+    }
+
+  }
+
+
+  public function enableUser($userId){
+
+      $query="UPDATE dbl_user
+              SET
+              status = '0'
+              WHERE userId = '$userId'";
+
+      $updated_row = $this->db->update($query);
+
+      if($updated_row){
+        $msg = "<span class='success'>User Enabled</span>";
+        return $msg;
+                      }
+      else{
+
+        $msg = "<span class='error'>Caution User not Enabled!!!</span>";
+        return $msg;
+      }
+
+    }
+
 }
 ?>

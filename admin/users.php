@@ -5,10 +5,30 @@
    $usr = new User();
 ?>
 
+<?php
+  if (isset($_GET['dis'])){
+    $dblid = (int)$_GET['dis'];
+    $dblUser = $usr->DisableUser($dblid);
+  }
+  if (isset($_GET['ena'])){
+    $dblid = (int)$_GET['ena'];
+    $dblUser = $usr->enableUser($dblid);
+  }
+
+?>
+
+
 <div class="main">
+  <h4>Admin Panel - Manage Users</h4>
+
+<?php
+  if (isset($dblUser)) {
+    echo $dblUser;
+  }
+
+?>
 
   <div class="manageuser">
-
     <table class="tblone">
       <tr>
         <th>No</th>
@@ -20,20 +40,33 @@
 
 <?php
 
-  $userData = $usr->getallUser();
+  $userData = $usr->getAllUser();
       if ($userData) {
         $i = 0;
         while($result = $userData->fetch_assoc()){
           $i++;
 ?>
       <tr>
-        <td align=center><?php echo $i; ?></td>
+
+        <td align=center><?php
+            if($result['status']=='1'){
+              echo "<span class='error'>".$i."</span>";
+            }else{
+              echo $i;
+           }?></td>
+
         <td align=center><?php echo $result['name'];?></td>
         <td align=center><?php echo $result['username'];?></td>
         <td align=center><?php echo $result['email'];?></td>
-        <td align=center><a onclick = "return confirm('Are you Sure to Disable!!')" href="?dis=<?php echo $result['userId'] ?>">Disable</a>||
-        <a onclick = "return confirm('Are you Sure to Enable!!')" href="?ena=<?php echo $result['userId'] ?>">Enable</a>||
-        <a onclick = "return confirm('Are you Sure to delete!!')" href="?del=<?php echo $result['userId'] ?>">Remove</a></td>
+        <td align=center>
+          <?php if ($result['status']== '0' ) {?>
+              <a onclick="return confirm('Are you Sure to Disable!!')" href="?dis=<?php echo $result['userId'];?>"> Disable </a>
+            <?php } else {?>
+            <a onclick = "return confirm('Are you Sure to Enable!!')" href="?ena=<?php echo $result['userId'];?>"> Enable </a>
+          <?php } ?>
+
+        ||<a onclick = "return confirm('Are you Sure to delete!!')" href="?del=<?php echo $result['userId'];?>"> Remove </a>
+        </td>
       </tr>
       <?php }}?>
    </table>
