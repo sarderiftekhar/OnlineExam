@@ -1,20 +1,20 @@
 <?php
     $filepath = realpath(dirname(__FILE__));
 	   include_once ($filepath.'/inc/loginheader.php');
-     include_once ($filepath.'/../classes/Admin.php');
-     $ad= new Admin();
+     include_once ($filepath.'/../classes/admin.php');
+     $ad= new admin();
 ?>
 
 <?php
     if ($_SERVER['REQUEST_METHOD']=='POST'){
-      $admindata= $ad->getAdminData();
+      $adminData = $ad->getAdminData($_POST);
     }
  ?>
 
 <div class="main">
 <h1>Admin Login</h1>
 <div class="adminlogin">
-	<form action="" method="post">
+	<form action="" method="post" >
 		<table>
 			<tr>
 				<td>Username</td>
@@ -22,7 +22,7 @@
 			</tr>
 			<tr>
 				<td>Password</td>
-				<td><input type="password" name="AdminPass" required/></td>
+				<td><input type="password" name="adminPass" required/></td>
 			</tr>
 			<tr>
 				<td></td>

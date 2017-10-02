@@ -3,7 +3,7 @@ class Session{
 	 public static function init(){
 	 	session_start();
 	 }
-	 
+
 	 public static function set($key, $val){
 	 	$_SESSION[$key] = $val;
 	 }
@@ -24,6 +24,22 @@ class Session{
 	 	}
 	 }
 
+
+	 	public static function checkAdminSession(){
+	 	 	self::init();
+	 	 	if (self::get("adminLogin") == false) {
+	 	 		self::destroy();
+	 	 		header("Location:login.php");
+	 	 	}
+	 	 }
+
+		 public static function checkAdminLogin(){
+		  self::init();
+		  if (self::get("adminLogin") == true) {
+		 	 header("Location:index.php");
+		  }
+		 }
+
 	 public static function checkLogin(){
 	 	self::init();
 	 	if (self::get("login") == true) {
@@ -33,8 +49,9 @@ class Session{
 
 	 public static function destroy(){
 	 	session_destroy();
-	 	header("Location:login.php");
+		session_unset();
 	 }
+
 }
 
 ?>
