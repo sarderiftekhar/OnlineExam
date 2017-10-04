@@ -11,12 +11,16 @@
     $dblUser = $usr->DisableUser($dblid);
   }
   if (isset($_GET['ena'])){
-    $dblid = (int)$_GET['ena'];
-    $dblUser = $usr->enableUser($dblid);
+    $eblid = (int)$_GET['ena'];
+    $eblUser = $usr->enableUser($eblid);
+  }
+
+  if (isset($_GET['del'])){
+    $delid = (int)$_GET['del'];
+    $delUser = $usr->deleteUser($delid);
   }
 
 ?>
-
 
 <div class="main">
   <h4>Admin Panel - Manage Users</h4>
@@ -24,6 +28,12 @@
 <?php
   if (isset($dblUser)) {
     echo $dblUser;
+  }
+  if (isset($eblUser)) {
+    echo $eblUser;
+  }
+  if (isset($delUser)) {
+    echo $delUser;
   }
 
 ?>

@@ -70,5 +70,26 @@ public function DisableUser($userId){
 
     }
 
+
+      public function deleteUser($userId){
+
+          $query="DELETE FROM dbl_user WHERE userId = '$userId'";
+
+          $deldata = $this->db->delete($query);
+
+          if($deldata){
+            $msg = "<span class='success'>User Removed</span>";
+            return $msg;
+                          }
+          else{
+
+            $msg = "<span class='error'User cannot be Remove</span>";
+            return $msg;
+          }
+
+        }
+
+
+
 }
 ?>
