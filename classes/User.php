@@ -70,7 +70,6 @@ public function DisableUser($userId){
 
     }
 
-
       public function deleteUser($userId){
 
           $query="DELETE FROM dbl_user WHERE userId = '$userId'";
