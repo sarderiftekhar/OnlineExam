@@ -3,11 +3,21 @@
 	 include_once ($filepath.'/inc/header.php');
    include_once ($filepath.'/../classes/Exam.php');
    $exm = new Exam();
+
+  if (isset($_GET['delque'])) {
+    $questionNo = (int)$_GET['delque'];
+    $delQue = $exm->delQuestion($questionNo);
+  }
 ?>
 
 <div class="main">
   <h4>Admin Panel - Manage Questions</h4>
+<?php
 
+  if(isset($delQue)){
+    echo $delque;
+  }
+?>
   <div class="quelist">
     <table class="tblone">
       <tr>
@@ -27,7 +37,7 @@
         <td align=center><?php echo $i;?></td>
         <td align=center><?php echo $result['ques'];?></td>
         <td align=center>
-        <a onclick = "return confirm('Are you Sure to delete!!')" href="?del=<?php echo $result['quesNo'];?>"> Remove </a>
+        <a onclick = "return confirm('Are you Sure to delete!!')" href="?delque=<?php echo $result['questionNo'];?>"> Remove </a>
         </td>
       </tr>
       <?php }}?>

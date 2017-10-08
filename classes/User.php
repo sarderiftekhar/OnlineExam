@@ -11,7 +11,10 @@ class User{
     $this->db = new Database();
     $this->fm =  new Format();
   }
-public function getAdminData($data){
+
+
+
+public function dumyforuse($data){
 
       $adminUser = $this->fm->validation($data['adminUser']);
       $adminPass = $this->fm->validation($data['adminPass']);
