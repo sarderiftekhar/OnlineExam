@@ -51,7 +51,7 @@ public function addQuestions($data){
         }else{
           $rquery = "INSERT INTO dbl_ans(questionNo,rightAns,ans) VALUES ('$questionNo','0','$ansName')";
         }
-        $insert_row = $this->db->insert($query);
+        $insert_row = $this->db->insert($rquery);
         if ($insert_row) {
         continue;
       }else{

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2017 at 12:34 AM
+-- Generation Time: Oct 09, 2017 at 03:05 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -49,7 +49,7 @@ INSERT INTO `dbl_admin` (`adminId`, `adminUser`, `adminPass`) VALUES
 
 CREATE TABLE `dbl_ans` (
   `id` int(11) NOT NULL,
-  `quesNo` int(11) NOT NULL,
+  `questionNo` int(11) NOT NULL,
   `rightAns` int(11) NOT NULL DEFAULT '0',
   `ans` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -58,23 +58,23 @@ CREATE TABLE `dbl_ans` (
 -- Dumping data for table `dbl_ans`
 --
 
-INSERT INTO `dbl_ans` (`id`, `quesNo`, `rightAns`, `ans`) VALUES
-(1, 1, 1, '30 Birds'),
-(2, 1, 0, '60 Birds'),
-(3, 1, 0, '80 Birds'),
-(4, 1, 0, '120 Birds'),
-(5, 2, 0, '34'),
-(6, 2, 0, '38'),
-(7, 2, 1, '42'),
-(8, 2, 0, '62'),
-(10, 3, 0, '4 km/hr\r\n'),
-(11, 3, 0, '6 km/hr\r\n'),
-(12, 3, 1, '8 km/hr\r\n'),
-(13, 3, 0, 'Data inadequate\r\n'),
-(14, 4, 0, 'I alone sufficient while II alone not sufficient to answer\r\n'),
-(15, 4, 1, 'II alone sufficient while I alone not sufficient to answer\r\n'),
-(16, 4, 0, 'Either I or II alone sufficient to answer\r\n'),
-(17, 4, 0, 'Both I and II are not sufficient to answer\r\n');
+INSERT INTO `dbl_ans` (`id`, `questionNo`, `rightAns`, `ans`) VALUES
+(18, 1, 0, 'Margaret Thacher'),
+(19, 1, 1, 'Bucher'),
+(20, 1, 0, 'Diana'),
+(21, 1, 0, 'Batman'),
+(22, 2, 0, 'Ball'),
+(23, 2, 1, 'Bat'),
+(24, 2, 0, 'Wicket'),
+(25, 2, 0, 'Gloves'),
+(26, 2, 0, 'sdfs df'),
+(27, 2, 1, 'sdfsdfsdf'),
+(28, 2, 0, 'adfasdasd'),
+(29, 2, 0, 'sdfsdfsdf'),
+(30, 3, 0, 'asdf sdfsdf'),
+(31, 3, 1, 'sdfs dfsdf asdf'),
+(32, 3, 0, 'fsdgsdfgfdg sdf'),
+(33, 3, 0, 'sdf dghfgdsvsdfsh');
 
 -- --------------------------------------------------------
 
@@ -93,10 +93,14 @@ CREATE TABLE `dbl_ques` (
 --
 
 INSERT INTO `dbl_ques` (`id`, `questionNo`, `ques`) VALUES
-(1, 1, 'A fires 5 shots to B\'s 3 but A kills only once in 3 shots while B kills once in 2 shots. When B has missed 27 times, A has killed:'),
-(2, 2, 'What is the sum of two consecutive even numbers, the difference of whose squares is 84?'),
-(3, 3, 'A boat running downstream covers a distance of 16 km in 2 hours while for covering the same distance upstream, it takes 4 hours. What is the speed of the boat in still water?'),
-(4, 4, 'Two towns are connected by railway. Can you find the distance between them?');
+(5, 1, 'Name of the President?'),
+(6, 2, 'Name of the Game?'),
+(7, 3, 'What is the of your place?'),
+(33, 4, 'City'),
+(34, 4, 'City'),
+(35, 4, 'City'),
+(36, 4, 'City'),
+(37, 4, 'City');
 
 -- --------------------------------------------------------
 
@@ -164,13 +168,13 @@ ALTER TABLE `dbl_admin`
 -- AUTO_INCREMENT for table `dbl_ans`
 --
 ALTER TABLE `dbl_ans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `dbl_ques`
 --
 ALTER TABLE `dbl_ques`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `dbl_user`
