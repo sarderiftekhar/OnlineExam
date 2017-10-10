@@ -4,7 +4,9 @@
 	<div class="segment" style="margin-right:30px;">
 		<img src="img/regi.png"/>
 	</div>
+
 	<div class="segment">
+
 	<form action="" method="post">
 		<table>
 		<tr>
@@ -26,12 +28,13 @@
          </tr>
          <tr>
            <td></td>
-           <td><input type="submit" id="regSubmit" value="Signup">
+           <td><input type="submit" id="regsubmit" value="Signup">
            </td>
          </tr>
        </table>
 	   </form>
 	   <p>Already Registered ? <a href="index.php">Login</a> Here</p>
+		 <span id="state"></span>
 	</div>
 
 

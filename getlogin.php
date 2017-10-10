@@ -5,11 +5,9 @@
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-    $name = $_POST['name'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
     $email = $_POST['email'];
-    $userregi = $usr->userRegistration($name,$username,$password,$email);
+    $password = md5($_POST['password']);
+    $userlogin = $usr->userLogin($email,$password);
 
 }
 

@@ -8,17 +8,18 @@
 	<form action="" method="post">
 		<table class="tbl">
 			 <tr>
-			   <td>Username</td>
-			   <td><input name="username" type="text"></td>
+				 <br><br>
+			   <td>Email</td>
+			   <td><input name="email" type="text" idea="email"></td>
 			 </tr>
 			 <tr>
 			   <td>Password </td>
-			   <td><input name="password" type="password"></td>
+			   <td><input name="password" type="password" id="password"></td>
 			 </tr>
 
 			  <tr>
 			  <td></td>
-			   <td><input type="submit" name="login" value="Login">
+			   <td><input type="submit" id="loginsubmit" value="Login">
 			   </td>
 			 </tr>
        </table>

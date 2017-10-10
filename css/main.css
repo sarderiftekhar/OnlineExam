@@ -63,14 +63,14 @@ input[type="submit"] {
   border: 1px solid #d3d3d3;
   border-radius: 4px;
   float: left;
-  min-height: 225px;
+  min-height: 245px;
   padding: 20px;
   width: 357px;
 }
 .segment img {
   height: 200px;
   margin-left: 80px;
-  padding-top: 12px;
+  padding-top: 22px;
 }
 .segment h2 {
   border-bottom: 1px solid #ddd;
@@ -117,4 +117,11 @@ input[type="submit"] {
   font-size: 16px;
   margin-bottom: 10px;
   padding-bottom: 10px;
+}
+
+.success{
+  color:green;
+}
+.error {
+  color: red;
 }
