@@ -1,5 +1,6 @@
 <?php
   $filepath = realpath(dirname(__FILE__));
+  include_once ($filepath.'/../lib/Session.php');
   include_once ($filepath.'/../lib/Database.php');
   include_once ($filepath.'/../helpers/Format.php');
 
@@ -23,7 +24,7 @@ public function userRegistration($name,$username,$password,$email){
       $password= mysqli_real_escape_string($this->db->link,md5($password));
       $email = mysqli_real_escape_string($this->db->link,$email);
 
-      if ($name == "" || $username == "" || $password = "" || $email == "") {
+      if ($name == "" || $username == "" || $password == "" || $email == "") {
         echo "<span class='error'> Cell must not be empty</span>";
         exit();
       }else if(filter_var($email,FILTER_VALIDATE_EMAIL)===false){
@@ -33,16 +34,12 @@ public function userRegistration($name,$username,$password,$email){
         $chkquery = "SELECT * FROM dbl_user WHERE email = '$email'";
         $chkresult = $this->db->select($chkquery);
         if ($chkresult!=false) {
-          ?>
-          <script type="text/javascript">
-            alert("Email already exists");
-          </script>
-          <?php
+          echo "<span class='error'>Email already exists</span>";
           exit();
         }else{
           $query = "INSERT INTO dbl_user(name.username,password,email) VALUES ('$name','$username','$password','$email')";
           $inserted_row = $this->db->insert($query);
-        }if($inserted_row){
+          if($inserted_row){
           echo "<span class='success'>User registered succeefully</span>";
           exit();
         }else {
@@ -50,18 +47,48 @@ public function userRegistration($name,$username,$password,$email){
           exit();
         }
       }
-
+    }
   }
 
 public function userLogin($email,$password){
+  $email = $this->fm->validation($email);
+  $password = $this->fm->validation($password);
   $email = mysqli_real_escape_string($this->db->link,$email);
   $password= mysqli_real_escape_string($this->db->link,$password);
-  if ($email == "" || $password = "") {
-    echo "<span class='error'> Cell must not be empty</span>";
-    exit();
 
+  if ($email == "" || $password == "") {
+    echo "empty";
+    exit();
+  }else{
+    $query = "SELECT * FROM dbl_user WHERE email = '$email' AND password='$password'";
+    $result = $this->db->select($query);
+    if ($result!=false) {
+      $value = $result->fetch_assoc();
+      if($value['status']=='1'){
+        echo"disable";
+        exit();
+      }else{
+        Session::init();
+        Session::set("login",true);
+        Session::set("userid",$value['userid']);
+        Session::set("username",$value['username']);
+        Session::set("name",$value['name']);
+      }
+      }else{
+        echo "error";
+        exit();
+      }
+   }
 }
 
+
+public function getUserData($userId){
+
+  $query = "SELECT * FROM dbl_user WHERE userId='$userId'";
+  $result = $this->db->select($query);
+  return $result;
+
+}
 
 public function getAllUser(){
 
@@ -114,24 +141,16 @@ public function DisableUser($userId){
     }
 
       public function deleteUser($userId){
-
           $query="DELETE FROM dbl_user WHERE userId = '$userId'";
-
           $deldata = $this->db->delete($query);
-
           if($deldata){
             $msg = "<span class='success'>User Removed</span>";
             return $msg;
                           }
           else{
-
             $msg = "<span class='error'User cannot be Remove</span>";
             return $msg;
           }
-
         }
-
-
-
 }
 ?>

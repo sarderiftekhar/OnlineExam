@@ -1,4 +1,7 @@
 <?php include 'inc/header.php'; ?>
+<?php
+	Session::checkLogin();
+ ?>
 <div class="main">
 <h1>Online Exam System - User Login</h1>
 	<div class="segment" style="margin-right:30px;">
@@ -10,7 +13,7 @@
 			 <tr>
 				 <br><br>
 			   <td>Email</td>
-			   <td><input name="email" type="text" idea="email"></td>
+			   <td><input name="email" type="text" id="email"></td>
 			 </tr>
 			 <tr>
 			   <td>Password </td>
@@ -26,8 +29,10 @@
 	   </form>
 		 <br><br>
 	   <p>New User ? <a href="register.php">Signup</a> Free</p>
+		 <span class="empty" style="display:none"> Field cannot be empty !!</span>
+		 <span class="error" style="display:none"> Email or Password doesn't match !!</span>
+		 <span class="disable" style="display:none"> This user is disabled !!</span>
 	</div>
-
 
 
 </div>

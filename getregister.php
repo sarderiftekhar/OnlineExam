@@ -12,5 +12,4 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $userregi = $usr->userRegistration($name,$username,$password,$email);
 
 }
-
 ?>

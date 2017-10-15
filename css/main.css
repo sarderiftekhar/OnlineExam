@@ -122,6 +122,6 @@ input[type="submit"] {
 .success{
   color:green;
 }
-.error {
+.error,.empty,.disable {
   color: red;
 }
