@@ -81,24 +81,56 @@ public function userLogin($email,$password){
    }
 }
 
-
-public function getUserData($userId){
-
-  $query = "SELECT * FROM dbl_user WHERE userId='$userId'";
+public function getUserData($userid){
+  $query = "SELECT * FROM dbl_user WHERE userId='$userid'";
   $result = $this->db->select($query);
   return $result;
-
 }
 
-public function getAllUser(){
+public function getUserDataByName($username){
+  $query = "SELECT * FROM dbl_user WHERE username='$username'";
+  $result = $this->db->select($query);
+  return $result;
+}
 
+
+
+public function getAllUser(){
       $query = "SELECT * FROM dbl_user ORDER BY userId DESC";
       $result = $this->db->select($query);
       return $result;
   }
 
-public function DisableUser($userId){
+public function updateUserData($userId,$data){
 
+  $name = $this->fm->validation($data['name']);
+  $name = $this->fm->validation($data['username']);
+  $name = $this->fm->validation($data['email']);
+
+  $name = mysqli_real_escape_string($this->db->link,$name);
+  $username = mysqli_real_escape_string($this->db->link,$username);
+  $email = mysqli_real_escape_string($this->db->link,$email);
+
+  $query = "UPDATE dbl_user
+            SET
+            name = '$name'
+            username = '$username'
+            email = '$email'
+           WHERE userid = '$userid'";
+
+  $updated_row = $this->db->update($query);
+
+  if($updated_row){
+    $msg = "<span class='success'>User data Updated !</span>";
+    return $msg;
+  }else{
+    $msg = "<span class='success'>User data not updated !</span>";
+    return $msg;
+  }
+}
+
+
+public function DisableUser($userId){
     $query="UPDATE dbl_user
             SET
             status = '1'
