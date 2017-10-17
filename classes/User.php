@@ -4,7 +4,7 @@
   include_once ($filepath.'/../lib/Database.php');
   include_once ($filepath.'/../helpers/Format.php');
 
-
+// 
 class User{
   private $db;
   private $fm;
@@ -70,7 +70,7 @@ public function userLogin($email,$password){
       }else{
         Session::init();
         Session::set("login",true);
-        Session::set("userid",$value['userid']);
+        Session::set("userId",$value['userId']);
         Session::set("username",$value['username']);
         Session::set("name",$value['name']);
       }
@@ -81,19 +81,11 @@ public function userLogin($email,$password){
    }
 }
 
-public function getUserData($userid){
-  $query = "SELECT * FROM dbl_user WHERE userId='$userid'";
+public function getUserData($userId){
+  $query = "SELECT * FROM dbl_user WHERE userId='$userId'";
   $result = $this->db->select($query);
   return $result;
 }
-
-public function getUserDataByName($username){
-  $query = "SELECT * FROM dbl_user WHERE username='$username'";
-  $result = $this->db->select($query);
-  return $result;
-}
-
-
 
 public function getAllUser(){
       $query = "SELECT * FROM dbl_user ORDER BY userId DESC";
@@ -104,8 +96,8 @@ public function getAllUser(){
 public function updateUserData($userId,$data){
 
   $name = $this->fm->validation($data['name']);
-  $name = $this->fm->validation($data['username']);
-  $name = $this->fm->validation($data['email']);
+  $username = $this->fm->validation($data['username']);
+  $email = $this->fm->validation($data['email']);
 
   $name = mysqli_real_escape_string($this->db->link,$name);
   $username = mysqli_real_escape_string($this->db->link,$username);
@@ -113,10 +105,10 @@ public function updateUserData($userId,$data){
 
   $query = "UPDATE dbl_user
             SET
-            name = '$name'
-            username = '$username'
+            name = '$name',
+            username = '$username',
             email = '$email'
-           WHERE userid = '$userid'";
+            WHERE userId = '$userId'";
 
   $updated_row = $this->db->update($query);
 

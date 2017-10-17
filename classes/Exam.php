@@ -79,7 +79,14 @@ public function GetTotalRows(){
   return $total;
 }
 
+public function getQuestion(){
+  $query = "SELECT * FROM dbl_ques";
+  $getdata = $this->db->select($query);
+  $result = $getdata->fetch_assoc();
+  return $result;
 
+
+}
 
 
 

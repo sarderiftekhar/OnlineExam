@@ -29,6 +29,8 @@ input[type="submit"] {
  table.tblone tr:nth-child(2n+1){background:#fff;height:30px;}
  table.tblone tr:nth-child(2n){background:#f1f1f1;height:30px;}
 
+ .profile{width:440px; margin:0 auto; border:1px solid #ddd;padding:30px 50px 50px 138px; }
+
 .main {
   background: #fff none repeat scroll 0 0;
   border: 1px solid #999;
@@ -125,3 +127,9 @@ input[type="submit"] {
 .error,.empty,.disable {
   color: red;
 }
+
+.starttest{width:590px;padding:20px 30px 50px 200px;border:5px solid #eee;}
+.starttest h2{font-size:20px;margin-bottom:10px;padding-bottom:10px;text-align:left;}
+.starttest ul{margin:0;padding: 0;list-style: none;}
+.starttest ul li{margin-top: 10px;}
+.starttest a{margin-top: 10px; padding-top: 10px;display: block;border:1px solid #ddd;text-decoration: none;padding: 6px 10px;text-align: center;color:#444;}

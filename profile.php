@@ -1,19 +1,14 @@
 <?php  include 'inc/header.php'; ?>
 <?php
   Session::checkSession();
-  $userId = $_SESSION['userid'];
-  $username = $_SESSION['username'];
-  echo $userId;
-?>
+  $userId = $_SESSION["userId"];
+  ?>
 
 <?php
     if($_SERVER['REQUEST_METHOD']=='POST'){
-      $updateUser=$usr->updateUserData($userid,$_POST);
+      $updateUser=$usr->updateUserData($userId,$_POST);
     }
 ?>
-<style>
- .profile{width:530px; margin:0 auto; border:1px solid #ddd;padding:30px 50px 50px; }
-</style>
 
 <div class="main">
 <h1>Update your profile</h1>
@@ -25,7 +20,7 @@
   ?>
 
 <?php
-    $getData = $usr->getUserDataByName($username);
+    $getData = $usr->getUserData($userId);
     if ($getData){
     $result= $getData->fetch_assoc();
  ?>

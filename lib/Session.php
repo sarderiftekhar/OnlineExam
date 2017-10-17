@@ -23,7 +23,6 @@ class Session{
 	 	}
 	 }
 
-
 	 	public static function checkAdminSession(){
 	 	 	self::init();
 	 	 	if (self::get("adminLogin") == false) {
