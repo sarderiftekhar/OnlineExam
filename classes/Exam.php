@@ -84,13 +84,20 @@ public function getQuestion(){
   $getdata = $this->db->select($query);
   $result = $getdata->fetch_assoc();
   return $result;
-
-
 }
 
+public function getQuesByNumber($number){
+  $query = "SELECT * FROM dbl_ques WHERE questionNo='$number'";
+  $getdata = $this->db->select($query);
+  $result = $getdata->fetch_assoc();
+  return $result;
+}
 
-
-
+public function getAnswer($number){
+  $query = "SELECT * FROM dbl_ans WHERE questionNo='$number'";
+  $getdata = $this->db->select($query);
+  return $getdata;
+}
 
 }// End of the class
 ?>
